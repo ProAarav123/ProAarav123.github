@@ -5,29 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Reminder</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .item { margin: 10px; padding: 10px; border: 1px solid #ccc; }
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        .item { margin: 10px; padding: 10px; border: 1px solid #ccc; display: flex; justify-content: space-between; }
         .remove { color: red; cursor: pointer; }
+        #shoppingPage { display: none; }
     </style>
 </head>
 <body>
 
+    <!-- Login Page -->
     <div id="loginPage">
         <h1>Login</h1>
         <input type="text" id="username" placeholder="Enter username">
         <input type="password" id="password" placeholder="Enter password">
-        <button onclick="login()">Login</button>
+        <button id="loginButton">Login</button>
     </div>
 
-    <div id="shoppingPage" style="display: none;">
+    <!-- Shopping Reminder Page -->
+    <div id="shoppingPage">
         <h1>Shopping Reminder</h1>
-        <button onclick="logout()">Logout</button>
+        <button id="logoutButton">Logout</button>
         <input type="text" id="itemInput" placeholder="Enter item">
-        <button onclick="addItem()">Add</button>
+        <button id="addItemButton">Add</button>
         <div id="items"></div>
     </div>
 
-    <script>
+    <script defer>
         let items = JSON.parse(localStorage.getItem("shoppingList")) || [];
 
         function renderList() {
@@ -59,7 +62,7 @@
         function login() {
             let user = document.getElementById("username").value;
             let pass = document.getElementById("password").value;
-            
+
             if (user === "admin" && pass === "1234") {
                 localStorage.setItem("loggedIn", "true");
                 showShoppingPage();
@@ -84,6 +87,12 @@
             document.getElementById("shoppingPage").style.display = "none";
         }
 
+        // Ensure buttons work properly
+        document.getElementById("loginButton").addEventListener("click", login);
+        document.getElementById("logoutButton").addEventListener("click", logout);
+        document.getElementById("addItemButton").addEventListener("click", addItem);
+
+        // Load the correct page on startup
         window.onload = function() {
             if (localStorage.getItem("loggedIn") === "true") {
                 showShoppingPage();
