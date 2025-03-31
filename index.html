@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferontic Shopping Reminder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Ferontic Webs</h1>
+        <button id="logout-btn" onclick="logout()">Logout</button>
+    </header>
+
+    <div id="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Enter Username">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="app-container" style="display: none;">
+        <h2>Shopping Reminder</h2>
+        <input type="text" id="item" placeholder="Enter Item">
+        <button onclick="addItem()">Add to List</button>
+        
+        <h3>Your List:</h3>
+        <ul id="list"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
